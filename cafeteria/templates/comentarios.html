@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% block title %}Comentarios — Cafetería El Grano Dorado{% endblock %}
+{% block content %}
+<h2>Reseñas de nuestros clientes</h2>
+
+<form method="post" class="comentario-form">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Enviar comentario</button>
+</form>
+
+<hr>
+
+<ul class="comentarios">
+    {% for comentario in comentarios %}
+        <li>
+            <strong>{{ comentario.nombre }}</strong>
+            <p>{{ comentario.mensaje }}</p>
+            <small>{{ comentario.fecha|date:"d M Y, H:i" }}</small>
+        </li>
+    {% empty %}
+        <li>No hay comentarios aún.</li>
+    {% endfor %}
+</ul>
+{% endblock %}

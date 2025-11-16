@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}Productos — Cafetería El Grano Dorado{% endblock %}
+{% block content %}
+<h2>Nuestros Productos</h2>
+
+<ul class="productos">
+    {% for producto in productos %}
+        <li>
+            {% if producto.imagen %}
+                <img src="{{ producto.imagen.url }}" alt="{{ producto.nombre }}">
+            {% else %}
+                <img src="{% static 'images/sin-imagen.png' %}" alt="Sin imagen">
+            {% endif %}
+            <strong>{{ producto.nombre }}</strong><br>
+            ${{ producto.precio }}<br>
+            {{ producto.descripcion }}
+        </li>
+    {% empty %}
+        <li>No hay productos disponibles.</li>
+    {% endfor %}
+</ul>
+{% endblock %}
+
+
+

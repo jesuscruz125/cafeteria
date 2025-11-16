@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% block title %}Eventos — Cafetería El Grano Dorado{% endblock %}
+{% load static %}
+{% block content %}
+<h2>Próximos Eventos</h2>
+<ul class="eventos">
+    {% for evento in eventos %}
+        <li>
+            <div class="imagen">
+                {% if evento.imagen %}
+                    <img src="{{ evento.imagen.url }}" alt="{{ evento.titulo }}">
+                {% else %}
+                    <img src="{% static 'images/sin-imagen.png' %}" alt="Sin imagen">
+                {% endif %}
+            </div>
+            <div class="contenido">
+                <strong>{{ evento.titulo }}</strong><br>
+                <small><strong>Fecha:</strong> {{ evento.fecha }}</small>
+                <p>{{ evento.descripcion }}</p>
+            </div>
+        </li>
+    {% empty %}
+        <li>No hay eventos disponibles.</li>
+    {% endfor %}
+</ul>
+{% endblock %}
+
+
+

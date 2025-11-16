@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block title %}Sucursales — Cafetería El Grano Dorado{% endblock %}
+{% block content %}
+<h2>Nuestras Sucursales</h2>
+
+<ul class="sucursales">
+    {% for sucursal in sucursales %}
+        <li>
+            {% if sucursal.imagen %}
+                <img src="{{ sucursal.imagen.url }}" alt="{{ sucursal.nombre }}">
+            {% endif %}
+            <h3>{{ sucursal.nombre }}</h3>
+            <p>{{ sucursal.direccion }}</p>
+            <p><strong>Horario:</strong> {{ sucursal.horario }}</p>
+        </li>
+    {% empty %}
+        <p>No hay sucursales registradas.</p>
+    {% endfor %}
+</ul>
+{% endblock %}
+
